@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:health/consultas.dart';
+import 'package:health/home.dart';
 
 import 'homepage.dart';
 
@@ -42,24 +44,32 @@ class _formularioScreenState extends State<formularioScreen> {
       String historico;
       String exames;
 
-      medico = txtmedico as String;
-      especialidade = txtespecialidade as String;
-      data = txtdata as String;
-      local = txtlocal as String;
-      historico = txthistorico as String;
-      exames = txtexames as String;
+      medico = txtmedico.toString();
+      especialidade = txtespecialidade.toString();
+      data = txtdata.toString();
+      local = txtlocal.toString();
+      historico = txthistorico.toString();
+      exames = txtexames.toString();
+
+      Consulta dados = Consulta(
+        medico: medico,
+        especialidade: especialidade,
+        data: data,
+        local: local,
+        historico: historico,
+        exames: exames,
+      );
 
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (_) => homepage(
-              medico: medico,
-              especialidade: especialidade,
-              data: data,
-              local: local,
-              historico: historico,
-              exames: exames),
-        ),
+            builder: (_) => homepage(
+                medico: dados.medico,
+                especialidade: dados.especialidade,
+                data: dados.data,
+                local: dados.local,
+                historico: dados.historico,
+                exames: dados.exames)),
       );
     });
   }

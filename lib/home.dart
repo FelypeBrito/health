@@ -1,5 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:health/diego.dart';
+
+import 'package:health/formulario.dart';
+
+class homepage extends StatefulWidget {
+  String medico;
+  String especialidade;
+  String data;
+  String local;
+  String historico;
+  String exames;
+
+  homepage({
+    Key? key,
+    required this.medico,
+    required this.especialidade,
+    required this.data,
+    required this.local,
+    required this.historico,
+    required this.exames,
+  }) : super(key: key);
+
+  @override
+  State<homepage> createState() => _homepageState();
+}
+
+class _homepageState extends State<homepage> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
