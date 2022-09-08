@@ -80,7 +80,7 @@ class _FormularioScreenState extends State<FormularioScreen> {
         title: const Text('Preencher os dados'),
         backgroundColor: const Color(0xFF3E4095),
       ),
-      backgroundColor: const Color.fromARGB(255, 197, 241, 255),
+      backgroundColor: const Color(0xFFD4E7FC),
       body: SingleChildScrollView(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

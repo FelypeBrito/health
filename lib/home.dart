@@ -111,6 +111,7 @@ class _HomeState extends State<Home> {
           return ListTile(
             title: Text(tabela[indice].medico),
             subtitle: Text(tabela[indice].especialidade),
+            onTap: () {},
           );
         },
       ),
