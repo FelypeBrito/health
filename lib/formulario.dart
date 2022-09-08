@@ -58,19 +58,18 @@ class _FormularioScreenState extends State<FormularioScreen> {
         exames: exames,
       );
       print('Medico: ${dados.medico}');
-      setState(() {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (_) => Homepage(
-                  medico: dados.medico,
-                  especialidade: dados.especialidade,
-                  data: dados.data,
-                  local: dados.local,
-                  historico: dados.historico,
-                  exames: dados.exames)),
-        );
-      });
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => Homepage(
+                medico: dados.medico,
+                especialidade: dados.especialidade,
+                data: dados.data,
+                local: dados.local,
+                historico: dados.historico,
+                exames: dados.exames)),
+      );
     });
   }
 
@@ -224,5 +223,3 @@ class _FormularioScreenState extends State<FormularioScreen> {
     );
   }
 }
-
-class Tests {}

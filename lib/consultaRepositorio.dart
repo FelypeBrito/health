@@ -1,13 +1,14 @@
-/*import 'package:health/consultas.dart';
+import 'package:health/consultas.dart';
 
 class ConsultaRepositorio {
-  List<ConsultaRepositorio> tabela = [
+  static List<Consulta> tabela = [
     Consulta(
-        medico: ,
-        especialidade: especialidade,
-        data: data,
-        local: local,
-        historico: historico,
-        exames: exames),
+        medico: '',
+        especialidade: '',
+        data: '',
+        local: '',
+        historico: '',
+        exames: '')
   ];
-}*/
+  static var cont = 0;
+}

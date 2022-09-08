@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health/consultaRepositorio.dart';
 
 import 'package:health/consultas.dart';
 import 'package:health/formulario.dart';
@@ -65,7 +66,10 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<String> listProdutos = [];
-  List<Consulta> listConsultas = [];
+  final tabela = ConsultaRepositorio.tabela;
+  int cont = ConsultaRepositorio.cont;
+
+  //List<Consulta> listConsultas = [];
 
   @override
   Widget build(BuildContext context) {
@@ -78,14 +82,21 @@ class _HomeState extends State<Home> {
           historico: widget.historico,
           exames: widget.exames)
     ];*/
+    print('Tamanho Tabela: ${tabela.length}');
+    /*if (tabela.length == 0) {
+      tabela.;
+      cont++;
+    }*/
 
-    listConsultas.add(Consulta(
-        medico: widget.medico,
-        especialidade: widget.especialidade,
-        data: widget.data,
-        local: widget.local,
-        historico: widget.historico,
-        exames: widget.exames));
+    tabela.add(
+      Consulta(
+          medico: widget.medico,
+          especialidade: widget.especialidade,
+          data: widget.data,
+          local: widget.local,
+          historico: widget.historico,
+          exames: widget.exames),
+    );
 
     listProdutos.add((widget.medico.toString()));
 
@@ -95,11 +106,11 @@ class _HomeState extends State<Home> {
         backgroundColor: Color(0xFF3E4095),
       ),
       body: ListView.builder(
-        itemCount: listConsultas.length,
+        itemCount: tabela.length,
         itemBuilder: (context, indice) {
           return ListTile(
-            title: Text(widget.medico),
-            subtitle: Text(widget.especialidade),
+            title: Text(tabela[indice].medico),
+            subtitle: Text('$indice'),
           );
         },
       ),
@@ -112,8 +123,14 @@ class _HomeState extends State<Home> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.push(
-            context, MaterialPageRoute(builder: (_) => Formulario())),
+        onPressed: () => {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => Formulario(),
+            ),
+          ),
+        },
         tooltip: 'Increment Counter',
         child: const Icon(Icons.add),
         backgroundColor: Color(0xFF3E4095),
