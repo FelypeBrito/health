@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:health/consultas.dart';
 import 'package:health/formulario.dart';
 
-class homepage extends StatefulWidget {
+class Homepage extends StatefulWidget {
   String medico;
   String especialidade;
   String data;
@@ -10,7 +11,45 @@ class homepage extends StatefulWidget {
   String historico;
   String exames;
 
-  homepage({
+  Homepage({
+    required this.medico,
+    required this.especialidade,
+    required this.data,
+    required this.local,
+    required this.historico,
+    required this.exames,
+  }) : super();
+
+  List<Consulta> listConsulta = [];
+
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(
+          medico: widget.medico,
+          especialidade: widget.especialidade,
+          data: widget.data,
+          local: widget.local,
+          historico: widget.historico,
+          exames: widget.exames),
+    );
+  }
+}
+
+class Home extends StatefulWidget {
+  String medico;
+  String especialidade;
+  String data;
+  String local;
+  String historico;
+  String exames;
+
+  Home({
     Key? key,
     required this.medico,
     required this.especialidade,
@@ -21,40 +60,46 @@ class homepage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<homepage> createState() => _homepageState();
-}
-
-class _homepageState extends State<homepage> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Home(),
-    );
-  }
-}
-
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
-
-  @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
   List<String> listProdutos = [];
+  List<Consulta> listConsultas = [];
 
   @override
   Widget build(BuildContext context) {
+    /*List<Consulta> listConsultas = [
+      Consulta(
+          medico: widget.medico,
+          especialidade: widget.especialidade,
+          data: widget.data,
+          local: widget.local,
+          historico: widget.historico,
+          exames: widget.exames)
+    ];*/
+
+    listConsultas.add(Consulta(
+        medico: widget.medico,
+        especialidade: widget.especialidade,
+        data: widget.data,
+        local: widget.local,
+        historico: widget.historico,
+        exames: widget.exames));
+
+    listProdutos.add((widget.medico.toString()));
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Meu histórico'),
         backgroundColor: Color(0xFF3E4095),
       ),
       body: ListView.builder(
-        itemCount: listProdutos.length,
+        itemCount: listConsultas.length,
         itemBuilder: (context, indice) {
           return ListTile(
-            title: Text(listProdutos[indice]),
+            title: Text(widget.medico),
+            subtitle: Text(widget.especialidade),
           );
         },
       ),
