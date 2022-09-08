@@ -110,7 +110,7 @@ class _HomeState extends State<Home> {
         itemBuilder: (context, indice) {
           return ListTile(
             title: Text(tabela[indice].medico),
-            subtitle: Text('$indice'),
+            subtitle: Text(tabela[indice].especialidade),
           );
         },
       ),
