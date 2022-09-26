@@ -57,7 +57,6 @@ class _FormularioScreenState extends State<FormularioScreen> {
         historico: historico,
         exames: exames,
       );
-      print('Medico: ${dados.medico}');
 
       Navigator.push(
         context,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health/consultaRepositorio.dart';
-
 import 'package:health/consultas.dart';
+import 'package:health/fichadetalhe.dart';
 import 'package:health/formulario.dart';
 
 class Homepage extends StatefulWidget {
@@ -65,28 +65,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<String> listProdutos = [];
   final tabela = ConsultaRepositorio.tabela;
-  int cont = ConsultaRepositorio.cont;
-
-  //List<Consulta> listConsultas = [];
 
   @override
   Widget build(BuildContext context) {
-    /*List<Consulta> listConsultas = [
-      Consulta(
-          medico: widget.medico,
-          especialidade: widget.especialidade,
-          data: widget.data,
-          local: widget.local,
-          historico: widget.historico,
-          exames: widget.exames)
-    ];*/
     print('Tamanho Tabela: ${tabela.length}');
-    /*if (tabela.length == 0) {
-      tabela.;
-      cont++;
-    }*/
 
     tabela.add(
       Consulta(
@@ -98,8 +81,6 @@ class _HomeState extends State<Home> {
           exames: widget.exames),
     );
 
-    listProdutos.add((widget.medico.toString()));
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Meu histórico'),
@@ -109,9 +90,20 @@ class _HomeState extends State<Home> {
         itemCount: tabela.length,
         itemBuilder: (context, indice) {
           return ListTile(
-            title: Text(tabela[indice].medico),
-            subtitle: Text(tabela[indice].especialidade),
-            onTap: () {},
+            title: Text(tabela[indice].especialidade),
+            subtitle: Text('Consulta realizada ' + tabela[indice].data),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => FichaDetalhe(
+                          medico: tabela[indice].medico,
+                          especialidade: tabela[indice].especialidade,
+                          data: tabela[indice].data,
+                          local: tabela[indice].local,
+                          historico: tabela[indice].historico,
+                          exames: tabela[indice].exames)));
+            },
           );
         },
       ),
